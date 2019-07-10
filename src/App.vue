@@ -28,7 +28,7 @@
 
       <!-- Product -->
       <ul class="products">
-        <li v-for="product in matchProducts" :key="product.key">
+        <li v-for="product in matchProducts" :key="product.sku">
 
           <!-- Sale spot -->
           <div class="sale-spot" v-if="product.isOnSale">

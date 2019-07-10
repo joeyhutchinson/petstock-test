@@ -49,13 +49,13 @@ $ yarn serve | npm run serve
 
 ### Time taken to complete:
 
-[Add time to complete here]
+Around about 3 - 4 hours.
 
 ### General Comments:
 
-[Add general comments here]
+None.
 
 
 ### Additional tools used:
 
-[Add notes on additional tools here]
+None.
