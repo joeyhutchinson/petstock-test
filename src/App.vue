@@ -28,10 +28,16 @@
 
       <!-- Product -->
       <ul class="products">
-        <li v-for="product in matchProducts" :key="product.slug">
+        <li v-for="product in matchProducts" :key="product.key">
+          <a v-bind:href="product.href" v-bind:title="product.name">
+            <img v-bind:src="product.img" v-bind:alt="product.name">
+          </a>
           <a class="description" v-bind:href="product.href" v-bind:title="product.name">
             {{ product.name }}
           </a>
+          <p class="was-price" v-if="product.isOnSale">{{ 'Was $' + product.fullPrice }}</p>
+          <p class="sale-price" v-if="product.isOnSale">NOW {{'$' + product.listPrice }}</p>
+          <p class="price" v-else>{{'$' + product.listPrice }}</p>
         </li>
       </ul>
       <!-- End product -->
