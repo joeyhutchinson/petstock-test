@@ -98,6 +98,9 @@ $color-gray: #6B6B6B;
 $color-white: #fefefe;
 $color-sale: #82B366;
 $color-controls: #3333FF;
+$color-controls: #3333FF;
+$color-controls-hover: #0404a8;
+$color-controls-active: #444444;
 
 #app {
   font-family: Helvetica, Arial, sans-serif;
@@ -110,21 +113,40 @@ $color-controls: #3333FF;
     padding: 0;
     margin: 0;
   }
+  .controls {
+    display: grid;
+    grid-template-columns: 100%;
+  }
   .categories {
     ul {
       display: flex;
+      flex-direction: row;
+      width: 100%;
+      height: 2.5rem;
+      padding: 0.5rem;
       li {
         margin-right: 0.25rem;
+        button {
+          width: 11rem;
+          padding: 5% 20%;
+          color: $color-white;
+          font-size: 1.2rem;
+          text-align: center;
+          cursor: pointer;
+          background-color: $color-controls;
+          border: none;
+          border-radius: .3125rem;
+          transition: background-color .33s ease-in-out;
+        }
+        button:hover {
+          background-color: $color-controls-hover;
+          }
+        button:focus {
+          background-color: $color-controls-active;
+          outline: none;
+          }
       }
     }
-  }
-  .controls {
-    display: grid;
-    grid-template-columns: 3fr 2fr;
-  }
-  .controls button {
-    border: 1px solid $color-controls;
-    background-color: $color-white;
   }
   .results > ul {
     display: grid;
