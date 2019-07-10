@@ -32,12 +32,16 @@
           <a v-bind:href="product.href" v-bind:title="product.name">
             <img v-bind:src="product.img" v-bind:alt="product.name">
           </a>
-          <a class="description" v-bind:href="product.href" v-bind:title="product.name">
-            {{ product.name }}
-          </a>
-          <p class="was-price" v-if="product.isOnSale">{{ 'Was $' + product.fullPrice }}</p>
-          <p class="sale-price" v-if="product.isOnSale">NOW {{'$' + product.listPrice }}</p>
-          <p class="price" v-else>{{'$' + product.listPrice }}</p>
+          <div class="details-wrapper">
+            <div class="desc-wrapper">
+              <a class="description" v-bind:href="product.href" v-bind:title="product.name">
+                {{ product.name }}
+              </a>
+            </div>
+            <p class="was-price" v-if="product.isOnSale">{{ 'Was $' + product.fullPrice }}</p>
+            <p class="sale-price" v-if="product.isOnSale">NOW {{'$' + product.listPrice }}</p>
+            <p class="price" v-else>{{'$' + product.listPrice }}</p>
+          </div>
         </li>
       </ul>
       <!-- End product -->
@@ -125,6 +129,44 @@ $color-controls: #3333FF;
   .results > ul {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    justify-content: space-evenly;
+    grid-gap: 40px 10px;
+  }
+  .products {
+    li {
+      padding: 0.5rem;
+      position: relative;
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+      a {
+        text-decoration: none;
+        color: $color-gray;
+      }
+
+      p {
+        margin: 0.5rem 0;
+      }
+      .details-wrapper {
+        padding: 8% 8%;
+      }
+      .desc-wrapper {
+        min-height: 4.5rem;
+      }
+      .price { 
+        color: $color-gray;
+        font-weight: 700;
+      }
+      .was-price {
+        color: $color-gray;
+        font-size: 0.8rem;
+      }
+      .sale-price {
+        color: $color-sale;
+        font-weight: 700;
+      }
+    }
   }
   @media screen and (min-width: $size-mobile-max) {
 
