@@ -45,7 +45,10 @@ export default {
   mounted () {
     setTimeout(() => {
       this.categories = response.categories;
-      this.products = response.products;
+      this.products = response.products.map(product => ({
+        ... product,
+        isOnSale: product.listPrice !== product.fullPrice,
+      }));
     }, 250);
   }
 };
