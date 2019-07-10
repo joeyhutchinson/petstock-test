@@ -29,6 +29,13 @@
       <!-- Product -->
       <ul class="products">
         <li v-for="product in matchProducts" :key="product.key">
+
+          <!-- Sale spot -->
+          <div class="sale-spot" v-if="product.isOnSale">
+            <p>Sale</p>
+          </div>
+          <!-- End sale spot -->
+
           <a v-bind:href="product.href" v-bind:title="product.name">
             <img v-bind:src="product.img" v-bind:alt="product.name">
           </a>
@@ -158,6 +165,24 @@ $color-controls-active: #444444;
     li {
       padding: 0.5rem;
       position: relative;
+      .sale-spot {
+        background-color: $color-sale;
+        color: $color-white;
+        text-align: center;
+        display: block;
+        font-size: 1.3rem;
+        text-transform: uppercase;
+        width: 4.5rem;
+        height: 4.5rem;
+        border-radius: 50%;
+        z-index: 10;
+        position: absolute;
+        top: 0;
+        right: 10%;
+          p {
+            margin: 1.4rem 0;
+          }
+      }
       img {
         max-width: 100%;
         height: auto;
