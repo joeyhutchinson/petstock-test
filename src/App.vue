@@ -2,32 +2,43 @@
   <div id="app">
     <h1>PETstock FED Test</h1>
     <div class="controls">
+
+      <!-- Start filter buttons -->
       <p>Filter by category:</p>
       <section class="categories">
         <ul>
           <li v-for="category in categories" v-bind:key="category.slug">
-            <button>
+            <button @click="selectCategory(category)">
               {{ category.name }}
             </button>
           </li>
           <li>
-            <button>
+            <button @click="selectCategory(null)">
               View all
             </button>
           </li>
         </ul>
       </section>
     </div>
+    <!-- End filter buttons -->
+
+    <!-- Start results list --> 
     <div class="results">
-      <p>Found <strong>{{ products.length }}</strong> results</p>
+      <p>Found <strong>{{ matchProducts.length }}</strong> results</p>
+
+      <!-- Product -->
       <ul class="products">
-        <li v-for="product in products" :key="product.sku">
-          <a href="#" title="Product 1">
+        <li v-for="product in matchProducts" :key="product.slug">
+          <a class="description" v-bind:href="product.href" v-bind:title="product.name">
             {{ product.name }}
           </a>
         </li>
       </ul>
+      <!-- End product -->
+    
     </div>
+    <!-- End results list -->
+
   </div>
 </template>
 
@@ -46,11 +57,18 @@ export default {
     };
   },
   computed: {
+    matchProducts() {
+      return this.products.filter(product => (
+        !this.selectedCategory || product.category === this.selectedCategory.slug 
+      ));
+    }
   },
   methods: {
-
+    selectCategory(category) {
+      this.selectedCategory = category;
+    }
   },
-  mounted () {
+  mounted() {
     setTimeout(() => {
       this.categories = response.categories;
       this.products = response.products.map(product => ({
