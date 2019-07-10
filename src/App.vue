@@ -4,8 +4,8 @@
     <div class="controls">
 
       <!-- Start filter buttons -->
-      <p>Filter by category:</p>
       <section class="categories">
+       <p style="margin-bottom: 0.5rem;">Filter by category:</p> 
         <ul>
           <li v-for="category in categories" v-bind:key="category.slug">
             <button @click="selectCategory(category)">
@@ -98,19 +98,19 @@ export default {
 </script>
 
 <style lang="scss">
-$size-mobile-max: 37.5rem;
+$size-mobile-max: 400px;
 $size-large: 2 * $size-mobile-max;
 
 $color-gray: #6B6B6B;
 $color-white: #fefefe;
 $color-sale: #82B366;
 $color-controls: #3333FF;
-$color-controls: #3333FF;
 $color-controls-hover: #0404a8;
 $color-controls-active: #444444;
 
 #app {
   font-family: Helvetica, Arial, sans-serif;
+  padding: 2rem;
   > * {
     max-width: 75rem;
     margin: 0 auto;
@@ -215,8 +215,88 @@ $color-controls-active: #444444;
       }
     }
   }
-  @media screen and (min-width: $size-mobile-max) {
 
+  /** Tablet device styling - display 3 products wide on portrait screen **/
+  @media screen and (max-width: $size-large) {
+    padding: 1rem;
+    .results > ul {
+      grid-template-columns: repeat(3, 1fr);
+      .desc-wrapper {
+        min-height: 6rem;
+        .description {
+          font-size: 1.2rem; 
+        }
+      }
+      .price { 
+        font-size: 1.3rem;
+      }
+      .was-price {
+        color: $color-gray;
+        font-size: 1rem;
+      }
+      .sale-price {
+        font-size: 1.3rem;
+      }
+    }
+  } 
+
+  /** Mobile device styling - display 2 products wide on portrait screen **/
+  @media screen and (max-width: $size-mobile-max) {
+    h1 {
+      text-align: center;
+    }
+    .controls {
+      height: 300px;
+      width: 100%;
+      justify-items: center;
+    }
+    .categories {
+      p {
+        text-align: center;
+      }
+      ul {
+        flex-direction: column;
+        li {
+          margin-top: .5rem;
+          button {
+            font-size: 1rem;
+            width: 18rem;
+          }
+        }
+      }
+    }
+    .found-text {
+      text-align: center;
+    }
+    .results > ul {
+      grid-template-columns: repeat(2, 1fr);
+      .sale-spot {
+        font-size: 1rem;
+        width: 4rem;
+        height: 4rem;
+        right: 7%;
+          p {
+            margin: 1.4rem 0;
+          }
+        }
+      .desc-wrapper {
+        min-height: 4.5rem;
+        .description {
+          font-size: .8rem; 
+        }
+      }
+      .price { 
+        font-size: 1rem;
+      }
+      .was-price {
+        color: $color-gray;
+        font-size: 0.8rem;
+      }
+      .sale-price {
+        font-size: 1rem;
+      }
+    }
   }
 }
+
 </style>
