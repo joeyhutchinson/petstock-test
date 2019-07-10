@@ -2,10 +2,18 @@
   <div id="app">
     <h1>PETstock FED Test</h1>
     <div class="controls">
+      <p>Filter by category:</p>
       <section class="categories">
         <ul>
+          <li v-for="category in categories" v-bind:key="category.slug">
+            <button>
+              {{ category.name }}
+            </button>
+          </li>
           <li>
-            <button>Category</button>
+            <button>
+              View all
+            </button>
           </li>
         </ul>
       </section>
